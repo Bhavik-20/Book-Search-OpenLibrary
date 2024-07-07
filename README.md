@@ -5,7 +5,7 @@ A simple website that allows users to search for books.
 - This project is a simple book search application built using TypeScript, React, and React Bootstrap. 
 - It allows users to search for books by typing a book name into an input box. The application uses the Open Library API to fetch and display a list of books that match the search query. Each book entry displays the title, author(s), year of first publication, ISBN number, and number of pages. 
 - The application features an auto-search mechanism with debouncing to limit the number of API calls, ensuring efficient performance. 
-- The auto-search is triggered when the query length is >= 3..
+- The auto-search is triggered when the query length is >= 3.
 - Additionally, a toggle switch is provided to sort the books by relevance or by the year of first publication.
 
 # Getting Started with Create React App
