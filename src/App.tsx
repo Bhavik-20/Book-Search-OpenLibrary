@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, FormCheck } from 'react-bootstrap';
 import SearchBar from './SearchBar';
@@ -15,31 +15,43 @@ interface Book {
 const App: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [sortByYear, setSortByYear] = useState(false);
+  const [searching, setSearching] = useState(false);
+  const [query, setQuery] = useState('');
 
-  const handleSearch = async (query: string) => {
-    if (query.length < 3) {
-      setBooks([]);
-      return;
-    }
-
-    try {
-      const response = await axios.get(`https://openlibrary.org/search.json?q=${query}`);
-      let booksData = response.data.docs.map((doc: any) => ({
-        title: doc.title,
-        author_name: doc.author_name || [],
-        first_publish_year: doc.first_publish_year || 'N/A',
-        isbn: doc.isbn || [],
-        number_of_pages_median: doc.number_of_pages_median || 'N/A',
-      }));
-
-      if (sortByYear) {
-        booksData = booksData.sort((a: Book, b: Book) => a.first_publish_year - b.first_publish_year);
+  useEffect(() => {
+    const fetchBooks = async () => {
+      if (query.length < 3) {
+        setBooks([]);
+        return;
       }
 
-      setBooks(booksData);
-    } catch (error) {
-      console.error('Error fetching books:', error);
-    }
+      try {
+        setSearching(true);
+        const response = await axios.get(`https://openlibrary.org/search.json?q=${query}`);
+        let booksData = response.data.docs.map((doc: any) => ({
+          title: doc.title,
+          author_name: doc.author_name || [],
+          first_publish_year: doc.first_publish_year || 'N/A',
+          isbn: doc.isbn || [],
+          number_of_pages_median: doc.number_of_pages_median || 'N/A',
+        }));
+
+        if (sortByYear) {
+          booksData = booksData.sort((a: Book, b: Book) => a.first_publish_year - b.first_publish_year);
+        }
+
+        setBooks(booksData);
+        setSearching(false);
+      } catch (error) {
+        console.error('Error fetching books:', error);
+      }
+    };
+
+    fetchBooks();
+  }, [query, sortByYear]); // Trigger effect when query or sortByYear changes
+
+  const handleSearch = (searchQuery: string) => {
+    setQuery(searchQuery);
   };
 
   return (
