@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Book-Search-OpenLibrary/static/css/main.ff02f4b5.css",
-    "main.js": "/Book-Search-OpenLibrary/static/js/main.99de90d7.js",
+    "main.js": "/Book-Search-OpenLibrary/static/js/main.77a81f02.js",
     "static/js/453.4255b1ed.chunk.js": "/Book-Search-OpenLibrary/static/js/453.4255b1ed.chunk.js",
     "index.html": "/Book-Search-OpenLibrary/index.html",
     "main.ff02f4b5.css.map": "/Book-Search-OpenLibrary/static/css/main.ff02f4b5.css.map",
-    "main.99de90d7.js.map": "/Book-Search-OpenLibrary/static/js/main.99de90d7.js.map",
+    "main.77a81f02.js.map": "/Book-Search-OpenLibrary/static/js/main.77a81f02.js.map",
     "453.4255b1ed.chunk.js.map": "/Book-Search-OpenLibrary/static/js/453.4255b1ed.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ff02f4b5.css",
-    "static/js/main.99de90d7.js"
+    "static/js/main.77a81f02.js"
   ]
 }
